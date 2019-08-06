@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1fe2c18c52f49b9a78d4b9f30bc494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delaySpawn: 2
+  delaySpawn: 1
   enemy1: {fileID: 9178316124667983055, guid: baffad335c1774a63b29cfb2f152eb05, type: 3}
   GO_target: {fileID: 1648498468}
   enemies: []
