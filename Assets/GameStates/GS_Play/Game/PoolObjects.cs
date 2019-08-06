@@ -1,37 +1,94 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+
+public class PoolEntry<T> where T : Component
+{
+    public T prefab;
+    public List<T> list = new List<T>();
+    public PoolEntry(T prefab)
+    {   
+        this.prefab = prefab;
+    }
+}
+
 public class PoolObjects : Singleton<PoolObjects>
 {
-    public List<Bullet> bullets;
-    public List<ParticleSystem> exploses;
+    List<PoolEntry<Component>> entries;
 
-    void Start()
+    protected override void Awake()
     {
-        bullets = new List<Bullet>();
-        exploses = new List<ParticleSystem>();
+        base.Awake();
+        entries = new List<PoolEntry<Component>>();
     }
-
-    public Bullet GetBullet()
+    public T GetFreeObject<T>(T prefab, Transform parent = null) where T : Component
     {
-        for(int i = 0; i < bullets.Count; i++)
+        PoolEntry<Component> entry = null;
+        foreach(PoolEntry<Component> e in entries)
         {
-            if(!bullets[i].gameObject.activeSelf)
-                return bullets[i];
+            if(e.prefab == prefab)
+            {
+                entry = e;
+                break;
+            }
         }
-        return null;
-    }
-
-    public void AddBullet(Bullet bullet) => bullets.Add(bullet);
-
-    public ParticleSystem GetExploses()
-    {
-        for(int i = 0; i < exploses.Count; i++)
+        
+        if(entry == null)
         {
-            if(!exploses[i].gameObject.activeSelf)
-                return exploses[i];
+            entry = new PoolEntry<Component>(prefab);
+            entries.Add(entry);
         }
-        return null;
+        
+        return GetFreeObjectFromEntry<T>(entry, prefab, parent);
     }
 
-    public void AddExplose(ParticleSystem e) => exploses.Add(e);
+    public List<T> GetObjectList<T>(T prefab) where T : Component
+    {
+        PoolEntry<Component> result = null;
+        foreach(PoolEntry<Component> entry in entries)
+        {
+            if(entry.prefab == prefab)
+            {
+                result = entry;
+                break;
+            }
+        }
+
+        if(result == null)
+        {
+            result = new PoolEntry<Component>(prefab);
+            entries.Add(result);
+        }
+
+        return result.list as List<T>;
+    }
+
+    public void Clean()
+    {
+        entries.Clear();
+    }
+
+    T GetFreeObjectFromEntry<T>(PoolEntry<Component> entry, T prefab, Transform parent) where T : Component
+    {
+        T result = null;
+        foreach(T o in entry.list)
+        {
+            if(!o.gameObject.activeSelf)
+            {
+                result = o;
+                break;
+            }
+        }
+
+        if(result == null)
+        {
+            if(parent == null)parent = transform;
+            result = Instantiate(prefab, parent);
+            entry.list.Add(result);
+        }
+
+        result.gameObject.SetActive(true);
+        return result;
+    }
+    
 }

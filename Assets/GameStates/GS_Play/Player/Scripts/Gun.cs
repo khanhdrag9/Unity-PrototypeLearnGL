@@ -35,6 +35,7 @@ public class Gun : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             UpdateGunTo(1);
+            Debug.Log("Cout: " + PoolObjects.Instance.GetObjectList<Bullet>(PRB_bullet).Count);
         }
         else if(Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -69,12 +70,8 @@ public class Gun : MonoBehaviour
             {
                 recoil = PPT_recoil * point.transform.localPosition.x * 5;
             }
-            Bullet bullet = PoolObjects.Instance.GetBullet();
-            if(bullet == null) 
-            {
-                bullet = Instantiate(PRB_bullet, PoolObjects.Instance.gameObject.transform);
-                PoolObjects.Instance.AddBullet(bullet);
-            }
+
+            Bullet bullet = PoolObjects.Instance.GetFreeObject<Bullet>(PRB_bullet);
             bullet.gameObject.SetActive(true);
             bullet.x = point.transform.position.x;
             bullet.y = point.transform.position.y;
@@ -88,9 +85,6 @@ public class Gun : MonoBehaviour
     public void UpdateGunTo(int level)
     {
         float startRecoil = 0 - (level * 0.5f) * PPT_recoil;
-        Debug.Log("startRecoil : " + startRecoil);
-        Debug.Log("startRecoil : " + (startRecoil + PPT_recoil));
-        Debug.Log("startRecoil : " + (startRecoil + PPT_recoil * 2));
 
         this.level = level;
         shootPoint.Clear();

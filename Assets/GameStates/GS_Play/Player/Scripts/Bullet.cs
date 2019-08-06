@@ -42,12 +42,7 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
         if(PRB_destroyEffect)
         {
-            var explose = PoolObjects.Instance.GetExploses();
-            if(!explose)
-            {
-                explose = Instantiate(PRB_destroyEffect, PoolObjects.Instance.transform);
-                PoolObjects.Instance.AddExplose(explose);
-            }
+            var explose = PoolObjects.Instance.GetFreeObject<ParticleSystem>(PRB_destroyEffect);
             explose.transform.position = new Vector2(x, y);
             explose.gameObject.SetActive(true);
         }
