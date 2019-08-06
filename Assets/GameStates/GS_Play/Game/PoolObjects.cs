@@ -14,28 +14,32 @@ public class PoolEntry<T> where T : Component
 
 public class PoolObjects : Singleton<PoolObjects>
 {
-    List<PoolEntry<Component>> entries;
+    ArrayList entries;
 
     protected override void Awake()
     {
         base.Awake();
-        entries = new List<PoolEntry<Component>>();
+        entries = new ArrayList();
     }
     public T GetFreeObject<T>(T prefab, Transform parent = null) where T : Component
     {
-        PoolEntry<Component> entry = null;
-        foreach(PoolEntry<Component> e in entries)
+        PoolEntry<T> entry = null;
+        foreach(var e in entries)
         {
-            if(e.prefab == prefab)
+            if(e is PoolEntry<T>)
             {
-                entry = e;
-                break;
+                var pe = e as PoolEntry<T>;
+                if(pe != null && pe.prefab == prefab)
+                {
+                    entry = pe;
+                    break;
+                }
             }
         }
-        
+
         if(entry == null)
         {
-            entry = new PoolEntry<Component>(prefab);
+            entry = new PoolEntry<T>(prefab);
             entries.Add(entry);
         }
         
@@ -44,23 +48,27 @@ public class PoolObjects : Singleton<PoolObjects>
 
     public List<T> GetObjectList<T>(T prefab) where T : Component
     {
-        PoolEntry<Component> result = null;
-        foreach(PoolEntry<Component> entry in entries)
+        PoolEntry<T> result = null;
+        foreach(var entry in entries)
         {
-            if(entry.prefab == prefab)
+            if(entry is PoolEntry<T>)
             {
-                result = entry;
-                break;
+                var pe = entry as PoolEntry<T>;
+                if(pe != null && pe.prefab == prefab)
+                {
+                    result = pe;
+                    break;
+                }
             }
         }
 
         if(result == null)
         {
-            result = new PoolEntry<Component>(prefab);
+            result = new PoolEntry<T>(prefab);
             entries.Add(result);
         }
 
-        return result.list as List<T>;
+        return result.list;
     }
 
     public void Clean()
@@ -68,7 +76,7 @@ public class PoolObjects : Singleton<PoolObjects>
         entries.Clear();
     }
 
-    T GetFreeObjectFromEntry<T>(PoolEntry<Component> entry, T prefab, Transform parent) where T : Component
+    T GetFreeObjectFromEntry<T>(PoolEntry<T> entry, T prefab, Transform parent) where T : Component
     {
         T result = null;
         foreach(T o in entry.list)

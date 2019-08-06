@@ -35,7 +35,6 @@ public class Gun : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             UpdateGunTo(1);
-            Debug.Log("Cout: " + PoolObjects.Instance.GetObjectList<Bullet>(PRB_bullet).Count);
         }
         else if(Input.GetKeyDown(KeyCode.Alpha2))
         {
