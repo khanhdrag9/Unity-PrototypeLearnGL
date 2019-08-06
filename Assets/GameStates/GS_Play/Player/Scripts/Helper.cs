@@ -40,4 +40,14 @@ public class Helper
     {
         return Mathf.Cos(angle * DegreesToRad);
     }
+
+    public static bool RollRate(int rate)
+    {
+        return Random.Range(0, 101) <= rate;
+    }
+
+    public static float Distance(float x1, float y1, float x2, float y2)
+    {
+        return Mathf.Sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2));
+    }
 }

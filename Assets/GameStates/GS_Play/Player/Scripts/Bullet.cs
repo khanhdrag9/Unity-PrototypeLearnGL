@@ -3,7 +3,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [Header("Bullet")]
-    public float speed = 1;
+    public float speed = 0.5f;
+    public float size = 1;
     public ParticleSystem PRB_destroyEffect = null;
     [Header("General")]
     public float x = 0;
@@ -35,6 +36,19 @@ public class Bullet : MonoBehaviour
         //Unity transform
         transform.position = new Vector2(x, y);
         transform.localEulerAngles = new Vector3(0,0,angle);
+
+        foreach(var enemy in EnemyMgr.Instance.enemies)
+        {
+            if(!enemy.gameObject.activeSelf)continue;
+
+            float distance = Helper.Distance(enemy.x, enemy.y, x, y);
+            if(distance <= (size + enemy.size) * 0.5f)
+            {
+                enemy.Hit(1);
+                Explose();
+                break;
+            }
+        }
     }
 
     public void Explose()
