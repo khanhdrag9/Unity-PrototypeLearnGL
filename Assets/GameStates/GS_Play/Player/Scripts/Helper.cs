@@ -31,6 +31,34 @@ public class Helper
         return angle;
     }
 
+    public static float AngleBetweenAngle(float mine, float target)
+    {
+        mine = NormalizeAngle(mine);
+        target = NormalizeAngle(target);
+        float sub = target - mine;
+        if(Mathf.Abs(sub) < 180)
+        {
+            // return Mathf.Abs(sub);
+            return sub;
+        }
+        else if(mine > 180)
+        {
+            return sub + 360;
+        }
+        else if(target > 180)
+        {
+            return sub - 360;
+        }
+        return 0;
+    }
+
+    public static float NormalizeAngle(float angle)
+    {
+        float result = angle % 360;
+        if(result < 0)result += 360; 
+        return result;
+    }
+
     public static float Sin(float angle)
     {
         return Mathf.Sin(angle * DegreesToRad);
