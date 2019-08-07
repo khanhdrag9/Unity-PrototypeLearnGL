@@ -7,10 +7,11 @@ public class EnemyMgr : Singleton<EnemyMgr>
     public float delaySpawn = 3f;
     public Enemy enemy1 = null;
     public Enemy enemy2 = null;
+    public Enemy enemy3 = null;
     public GameObject GO_target = null;
     public List<Enemy> enemies;
 
-    public float cooldown = 0;
+    float cooldown = 0;
     void Start()
     {
         enemies = new List<Enemy>();
@@ -33,9 +34,10 @@ public class EnemyMgr : Singleton<EnemyMgr>
     void Spawn()
     {
         Enemy enemy = null;
-        if(Helper.RollRate(50)) 
-            enemy = PoolObjects.Instance.GetFreeObject<Enemy>(enemy1);
-        else enemy = PoolObjects.Instance.GetFreeObject<Enemy>(enemy2);
+        if(Helper.RollRate(25))
+            enemy = PoolObjects.Instance.GetFreeObject<Enemy>(enemy3);
+        if(Helper.RollRate(50)) enemy = PoolObjects.Instance.GetFreeObject<Enemy>(enemy2);
+        else  enemy = PoolObjects.Instance.GetFreeObject<Enemy>(enemy1);
         
         Color color = Color.HSVToRGB(Random.Range(0f, 1f), 1, 1);
         enemy.GetComponent<SpriteRenderer>().color = color;

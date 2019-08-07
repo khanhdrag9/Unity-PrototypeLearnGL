@@ -18,7 +18,6 @@ public class EnemyLevel2 : Enemy
         }
         else if(subAngle < 0)
         {
-            Debug.Log($"target {targetAngle} - sub {subAngle}");
             angle -= speedRotate * dt;
             if(angle > targetAngle) angle = targetAngle;
         }

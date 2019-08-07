@@ -32,8 +32,6 @@ public class Enemy : MonoBehaviour
         x += directX * speed * dt;
         y += directY * speed * dt;
 
-        Debug.Log("Angle : " + angle);
-
         transform.position = new Vector2(x, y);
         transform.localEulerAngles = new Vector3(0,0,angle);
     }

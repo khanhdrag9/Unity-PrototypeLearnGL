@@ -52,6 +52,10 @@ public class Gun : MonoBehaviour
         cooldown -= Time.deltaTime;
     }
 
+    public bool CanShoot()
+    {
+        return cooldown <= 0;
+    }
     public void Shoot()
     {
         float half = shootPoint.Count * 0.5f;

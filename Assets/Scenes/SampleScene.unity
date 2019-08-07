@@ -679,7 +679,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648498468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.96, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 712730093}
@@ -711,6 +711,8 @@ MonoBehaviour:
   acceleration: 20
   drag: 20
   bounce: 0.5
+  isAuto: 1
+  gun: {fileID: 712730094}
 --- !u!1 &2097360427
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,12 +742,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1fe2c18c52f49b9a78d4b9f30bc494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delaySpawn: 0.5
+  delaySpawn: 0.42
   enemy1: {fileID: 9178316124667983055, guid: baffad335c1774a63b29cfb2f152eb05, type: 3}
   enemy2: {fileID: 4638954654086520198, guid: fdd9de16b9672d94086e839a46c4cfc4, type: 3}
+  enemy3: {fileID: 3128375870084580009, guid: aefa837f796c96b43bd5a3297bfa52b0, type: 3}
   GO_target: {fileID: 1648498468}
   enemies: []
-  cooldown: 0
 --- !u!4 &2097360429
 Transform:
   m_ObjectHideFlags: 0
