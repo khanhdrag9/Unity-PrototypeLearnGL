@@ -34,9 +34,9 @@ public class EnemyMgr : Singleton<EnemyMgr>
     void Spawn()
     {
         Enemy enemy = null;
-        if(Helper.RollRate(25))
+        if(Helper.RollRate(35))
             enemy = PoolObjects.Instance.GetFreeObject<Enemy>(enemy3);
-        if(Helper.RollRate(50)) enemy = PoolObjects.Instance.GetFreeObject<Enemy>(enemy2);
+        else if(Helper.RollRate(60)) enemy = PoolObjects.Instance.GetFreeObject<Enemy>(enemy2);
         else  enemy = PoolObjects.Instance.GetFreeObject<Enemy>(enemy1);
         
         Color color = Color.HSVToRGB(Random.Range(0f, 1f), 1, 1);

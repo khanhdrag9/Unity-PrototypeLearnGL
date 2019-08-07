@@ -130,8 +130,8 @@ public class Player : ObjectController
     {
         while(true)
         {
-            directX = Random.Range(-1, 2);
-            directY = Random.Range(-1, 2);
+            directX = Random.Range(-1f, 1f);
+            directY = Random.Range(-1f, 1f);
             float delay = Random.Range(0.5f, 1.5f);
             yield return new WaitForSeconds(delay);
         }

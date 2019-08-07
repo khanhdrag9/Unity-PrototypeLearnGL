@@ -16,7 +16,8 @@ public class EnemyLevel3 : EnemyBasic
             Bullet bullet = PoolObjects.Instance.GetFreeObject<Bullet>(PRB_bullet);
             bullet.x = x;
             bullet.y = y;
-            bullet.Fire(0);
+            bullet.Fire(targetAngle);
+            bullet.GetComponent<SpriteRenderer>().color = color;
             cooldown = delayShoot;
         }
         cooldown -= dt;

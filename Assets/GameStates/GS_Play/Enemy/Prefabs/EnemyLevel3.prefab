@@ -99,7 +99,7 @@ MonoBehaviour:
   y: 0
   angle: 0
   size: 3
-  speed: 4
+  speed: 2
   directX: 0
   directY: 0
   color: {r: 1, g: 1, b: 1, a: 1}

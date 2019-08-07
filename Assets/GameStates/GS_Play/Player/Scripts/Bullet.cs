@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public float size = 1;
     public ParticleSystem PRB_destroyEffect = null;
     public ParticleSystem PRB_collisionEnemy = null;
+    public bool fromPlayer = true;
     [Header("General")]
     public float x = 0;
     public float y = 0;
@@ -38,18 +39,22 @@ public class Bullet : MonoBehaviour
         transform.position = new Vector2(x, y);
         transform.localEulerAngles = new Vector3(0,0,angle);
 
-        foreach(var enemy in EnemyMgr.Instance.enemies)
+        if(fromPlayer)
         {
-            if(!enemy.gameObject.activeSelf)continue;
-
-            float distance = Helper.Distance(enemy.x, enemy.y, x, y);
-            if(distance <= (size + enemy.size) * 0.5f)
+            foreach(var enemy in EnemyMgr.Instance.enemies)
             {
-                enemy.Hit(1);
-                Explose(true, enemy.color);
-                break;
+                if(!enemy.gameObject.activeSelf)continue;
+
+                float distance = Helper.Distance(enemy.x, enemy.y, x, y);
+                if(distance <= (size + enemy.size) * 0.5f)
+                {
+                    enemy.Hit(1);
+                    Explose(true, enemy.color);
+                    break;
+                }
             }
         }
+
     }
 
     public void Explose(bool isEnemy, Color color)
