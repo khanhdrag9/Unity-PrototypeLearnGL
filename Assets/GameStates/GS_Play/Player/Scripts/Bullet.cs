@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     public float speed = 0.5f;
     public float size = 1;
     public ParticleSystem PRB_destroyEffect = null;
+    public ParticleSystem PRB_collisionEnemy = null;
     [Header("General")]
     public float x = 0;
     public float y = 0;
@@ -30,8 +31,8 @@ public class Bullet : MonoBehaviour
         //Collision
         float halfW = GameScreen.screenWidth * 0.5f;
         float halfH = GameScreen.screenHeight * 0.5f;
-        if(x <= -halfW || x >= halfW)Explose();
-        if(y <= -halfH || y >= halfH)Explose(); 
+        if(x <= -halfW || x >= halfW)Explose(false, Color.white);
+        if(y <= -halfH || y >= halfH)Explose(false, Color.white); 
 
         //Unity transform
         transform.position = new Vector2(x, y);
@@ -45,18 +46,36 @@ public class Bullet : MonoBehaviour
             if(distance <= (size + enemy.size) * 0.5f)
             {
                 enemy.Hit(1);
-                Explose();
+                Explose(true, enemy.color);
                 break;
             }
         }
     }
 
-    public void Explose()
+    public void Explose(bool isEnemy, Color color)
     {
         gameObject.SetActive(false);
-        if(PRB_destroyEffect)
+        ParticleSystem explose = null;
+        if(isEnemy && PRB_collisionEnemy)
         {
-            var explose = PoolObjects.Instance.GetFreeObject<ParticleSystem>(PRB_destroyEffect);
+            explose = PoolObjects.Instance.GetFreeObject<ParticleSystem>(PRB_collisionEnemy);
+
+            var main = explose.main;
+            main.startColor = color;
+            var pares = explose.gameObject.GetComponentsInChildren<ParticleSystem>();
+            foreach(var p in pares)
+            {
+                var pMain = p.main;
+                pMain.startColor = color;
+            }
+        }
+        else if(PRB_destroyEffect)
+        {
+            explose = PoolObjects.Instance.GetFreeObject<ParticleSystem>(PRB_destroyEffect);
+            
+        }
+        if(explose)
+        {
             explose.transform.position = new Vector2(x, y);
             explose.gameObject.SetActive(true);
         }

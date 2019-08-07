@@ -96,6 +96,8 @@ MonoBehaviour:
   size: 0.75
   PRB_destroyEffect: {fileID: 7905642482035509230, guid: 04725bd8af8d1c64e8379c52fbab2c3d,
     type: 3}
+  PRB_collisionEnemy: {fileID: 7911820031388980672, guid: e0f10bf4394ac59499af0bbe407b5149,
+    type: 3}
   x: 0
   y: 0
   angle: 0

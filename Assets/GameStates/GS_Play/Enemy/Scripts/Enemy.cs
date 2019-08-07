@@ -15,10 +15,11 @@ public class Enemy : MonoBehaviour
     public float speed = 0;
     public float directX = 0;
     public float directY= 0;
+    public Color color = Color.white;
 
     public virtual void Start()
     {
-        
+        color =  GetComponent<SpriteRenderer>().color;
     }
 
     public virtual void Update()
@@ -63,7 +64,17 @@ public class Enemy : MonoBehaviour
         {
             var effect = PoolObjects.Instance.GetFreeObject<ParticleSystem>(PRB_destroyEffect);
             effect.transform.position = new Vector2(x, y);
+            
+            var main = effect.main;
+            main.startColor = color;
+            var pares = effect.gameObject.GetComponentsInChildren<ParticleSystem>();
+            foreach(var p in pares)
+            {
+                var pMain = p.main;
+                pMain.startColor = color;
+            }
         }
         gameObject.SetActive(false);
+        EnemyMgr.Instance.enemies.Remove(this);
     }
 }

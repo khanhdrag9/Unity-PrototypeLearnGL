@@ -32,6 +32,9 @@ public class EnemyMgr : Singleton<EnemyMgr>
     void Spawn()
     {
         var enemy = PoolObjects.Instance.GetFreeObject<Enemy>(enemy1);
+        Color color = Color.HSVToRGB(Random.Range(0f, 1f), 1, 1);
+        enemy.GetComponent<SpriteRenderer>().color = color;
+        enemy.color = color;
         enemies.Add(enemy);
         enemy.Spawn(GO_target);
     }
