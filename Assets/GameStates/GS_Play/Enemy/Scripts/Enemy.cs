@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Enemy")]
     public ParticleSystem PRB_destroyEffect = null;
-    public int PPT_hitpoint = 3;
+    public int PRP_hitpoint = 3;
     public int currentHP {get; protected set;}
     [Header("General")]
     public float x = 0;
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Spawn(GameObject target)
     {
-        currentHP = PPT_hitpoint;
+        currentHP = PRP_hitpoint;
         x = Random.Range(-GameScreen.screenWidth * 0.5f, GameScreen.screenWidth * 0.5f);
         y = GameScreen.screenHeight * 0.5f + size;
         if(Helper.RollRate(50))y *= -1;
