@@ -1304,7 +1304,7 @@ MonoBehaviour:
   PRP_numberExploseFinal: 7
   PRP_timeEachExplode: 0.3
   OBJ_hpBar: {fileID: 256400655}
-  isAuto: 0
+  isAuto: 1
   gun: {fileID: 712730094}
 --- !u!114 &1648498472
 MonoBehaviour:
