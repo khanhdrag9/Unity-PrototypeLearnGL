@@ -10,6 +10,7 @@ public class GameScreen : Singleton<GameScreen>
     public static float rateScale;
     public static int pixelUnit = 100;
 
+    public Player OBJ_player;
     public float PRP_durationShake = 0.25f;
     public float PRP_amountShake = 0.25f;
     public Fade OBJ_overEffect = null;

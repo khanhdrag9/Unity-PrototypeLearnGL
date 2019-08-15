@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
         if(currentHP <= 0)
         {
             Explose();
+            GameScreen.Instance.OBJ_player.GetComponent<ExpController>().Increase(PRP_hitpoint);
         }   
     }
 

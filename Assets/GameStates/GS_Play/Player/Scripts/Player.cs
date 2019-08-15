@@ -14,6 +14,7 @@ public class Player : ObjectController
     public int PRP_numberExploseFinal = 5;
     public float PRP_timeEachExplode = 0.2f;
     public ProgressBar OBJ_hpBar = null;
+
     public bool isAuto = true;
     public Gun gun = null;
 
