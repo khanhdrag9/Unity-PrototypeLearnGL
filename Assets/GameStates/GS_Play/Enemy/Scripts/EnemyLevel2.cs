@@ -10,16 +10,16 @@ public class EnemyLevel2 : Enemy
         float dt = Time.deltaTime;
         float targetAngle = Helper.AngleFromToBy90D(x, y, target.transform.position.x, target.transform.position.y);
         float subAngle = Helper.AngleBetweenAngle(angle, targetAngle);
-
+        
         if(subAngle > 0)
         {
             angle += speedRotate * dt;
-            if(angle < targetAngle) angle = targetAngle;
+            if(angle > targetAngle) angle = Helper.NormalizeAngle(targetAngle);
         }
         else if(subAngle < 0)
         {
             angle -= speedRotate * dt;
-            if(angle > targetAngle) angle = targetAngle;
+            if(angle < targetAngle) angle = Helper.NormalizeAngle(targetAngle);
         }
         
         

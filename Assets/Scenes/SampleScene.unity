@@ -772,7 +772,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a22cde38175821b4b86cd772d6d5c293, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.44705883}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -930,6 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a9e10d4dbdbfb428cbd7d06d9f5d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OBJ_player: {fileID: 1648498471}
   PRP_durationShake: 0.5
   PRP_amountShake: 0.3
   OBJ_overEffect: {fileID: 138630134}
@@ -1293,7 +1294,7 @@ MonoBehaviour:
   maxSpeed: 10
   acceleration: 20
   drag: 20
-  PRP_hitPoint: 10
+  PRP_hitPoint: 1000
   PRP_bounce: 0.5
   PRP_size: 1.5
   PRB_destroyEffect: {fileID: 5776735238380499256, guid: fdf11f11e5e2b8946ae4a69f8cdc0f55,
@@ -1723,12 +1724,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1fe2c18c52f49b9a78d4b9f30bc494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delaySpawn: 0.75
+  delaySpawn: -1
   enemy1: {fileID: 9178316124667983055, guid: baffad335c1774a63b29cfb2f152eb05, type: 3}
   enemy2: {fileID: 4638954654086520198, guid: fdd9de16b9672d94086e839a46c4cfc4, type: 3}
   enemy3: {fileID: 3128375870084580009, guid: aefa837f796c96b43bd5a3297bfa52b0, type: 3}
   GO_target: {fileID: 1648498468}
   enemies: []
+  SCO_waves:
+  - {fileID: 11400000, guid: f0c3fa2b433609741b64fd11ed3551ad, type: 2}
 --- !u!4 &2097360429
 Transform:
   m_ObjectHideFlags: 0

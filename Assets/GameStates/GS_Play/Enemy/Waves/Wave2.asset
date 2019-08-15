@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a5f2310e2963f46870383318590b9c, type: 3}
+  m_Name: Wave2
+  m_EditorClassIdentifier: 
+  PFB_enemy: {fileID: 3154197532951837855, guid: db3d97850ac868046b42df93a75d050b,
+    type: 3}
+  PFB_waveNode: {fileID: 6978242691833264305, guid: 9697dea7af16e0e4889cc36a68245bcd,
+    type: 3}
+  PRP_delayTime: 1
+  PRP_delaySpawnEnemy: 0.15
+  PRP_speedMovement: 12
+  PRP_numberSpawn: 12

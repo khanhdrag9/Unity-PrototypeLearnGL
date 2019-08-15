@@ -54,7 +54,7 @@ public class Helper
 
     public static float NormalizeAngle(float angle)
     {
-        float result = angle % 360;
+        float result = (int)angle % 360;
         if(result < 0)result += 360; 
         return result;
     }
